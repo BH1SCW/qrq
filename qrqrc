@@ -1,0 +1,41 @@
+# Configuration file for qrq by DJ1YFK. Change values as needed. 
+# NOTE: Don't leave any spaces between the = and the assigned value.
+# for example: dspdevice = /dev/dsp won't work!
+# The settings can be changed and saved from within the
+# program, so there is usually no need to manually change anything here.
+
+callsign=MYCALL       # your callsign
+initialspeed=100      # initial speed in LpM (5 LpM = 1 WPM)
+mincharspeed=100      # minimum character speed. below, Farnsworth is used
+dspdevice=/dev/dsp    # your DSP device, usually /dev/dsp (for OSS only)
+
+# risetime and falltime for shaping the CW sigs (in milliseconds). recommended
+# values: 1..5 see http://fkurz.net/ham/dah.png for an illustration.
+# if you have no clue what is is, just leave it ;-) 
+risetime=2.000000 
+
+# waveform. Can be 1 = Sine, 2 = Sawtooth, 3 = Square wave
+# Default: Sine. Sawtooth and square wave contain more overtones and may be
+# better to hear at very high speeds.
+waveform=1    
+
+# constanttone 
+# don't change the cw tone pitch
+# values: 0,1  (0 = not constant , 1 = constant)
+constanttone=0    
+
+# ctonefreq
+# frequency of the constant tone
+# values: 100 - 1600
+ctonefreq=600     
+
+# allow unlimited usage of F6
+f6=0   
+
+# use fixed speed in the attempts, regardless of errors
+fixspeed=0 
+# allow unlimited attempts (instead of just 50 calls)
+unlimitedattempt=0   
+
+# Callbase - specify a different file here, if desired.
+# callbase=/tmp/test

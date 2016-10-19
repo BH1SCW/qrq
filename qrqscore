@@ -1,0 +1,198 @@
+#!/usr/bin/perl 
+
+# qrqscore - Posts your score and retrieves scores from the an international
+#            internet toplist for 'qrq'.
+#
+# Copyright (C) 2007  Fabian Kurz
+#
+# This program is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+# more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
+# Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+use strict;
+use warnings;
+use LWP::UserAgent;
+
+my $ua = LWP::UserAgent->new;
+$ua->agent("qrq-score/0.0.1");
+
+my $res;
+my ($qrqrc, $toplist);
+my $mycall='';
+my $noupload=0;
+
+my @publictoplist;
+my @mytoplist;
+my @mergelist;
+my @url = ('http://fkurz.net/ham/qrqtop.php', 
+		'http://dj1yfk.de/ham/qrqtop.php');
+
+print "qrq-score (2007-11-19) - toplist synchronizer for morse trainer 'qrq'.";
+print "\n\n";
+print "Populates your local toplist file with the latest scores from other\n"; 
+print "users (http://fkurz.net/ham/qrqtop.php) and uploads your own personal\n";
+print "record to the online toplist.\n\n";
+
+unless (@ARGV) {
+print "Usage:\n";
+print "        qrqscore -u      Updates local toplist and uploads new highscore\n";
+print "                         (if available) for your 'mycall' in 'qrqrc'.\n";
+
+print "        qrqscore -d      Only updates your local toplist from the\n";
+print "                         internet list, doesn't upload your score.\n";
+exit(0);
+}
+elsif ($ARGV[0] eq '-d') {
+	$noupload = 1;
+}
+
+###############################################################################
+# Find the local toplist file and get the highest score for the call in 
+# ~/.qrq/qrqrc
+###############################################################################
+
+if ((-e 'qrqrc') && (-e 'toplist')) {
+	print "Found your 'qrqrc' and 'toplist' files in current directory...\n";
+	$qrqrc = 'qrqrc';
+	$toplist = 'toplist';
+}
+elsif ((-e $ENV{HOME}.'/.qrq/qrqrc') && (-e $ENV{HOME}.'/.qrq/toplist')) {
+	print "Found your 'qrqrc' and 'toplist' files in $ENV{HOME}/.qrq/ ...\n";
+	$qrqrc = $ENV{HOME}.'/.qrq/qrqrc';
+	$toplist = $ENV{HOME}.'/.qrq/toplist';
+}
+else {
+	print "Can't find 'qrqrc' and 'toplist'. Exiting.\n";
+	exit(1);
+}
+
+open RC, $qrqrc;
+while (my $line = <RC>) {
+	if ($line =~ /callsign=(\w+)/) {
+		$mycall = $1;
+		last;
+	}
+}
+close RC;
+
+open TL, $toplist;
+	@mytoplist = <TL>;
+close TL;
+
+open TL, ">$toplist-old";
+	print TL @mytoplist;
+close TL;
+
+chomp(@mytoplist);
+
+print "Old toplist backed up as $toplist-old.\n";
+
+###############################################################################
+# Merging the internet toplist with yours. Remove double entries for calls from
+# the toplist that are not $mycall, take the better score.
+###############################################################################
+
+my $x=0;
+do {
+	$res = $ua->post($url[$x], ['mode' => 'plain']);
+	$x++;
+} while (!$res->is_success);
+
+if ($res->is_success) {
+	print "Downloaded list from $url[$x-1]...\n";
+	@publictoplist = split(/\n/, $res->content);
+}
+else {
+	die "Unable to reach any of the servers. $res->status_line\n";
+}
+
+@mergelist = (@publictoplist, @mytoplist);
+
+@mytoplist = ();
+
+# Find the top score for every callsign in the List. Might be higher locally
+# than on the internet list, or vice versa...
+
+my %topscores;						# key=call, value=topscore
+foreach (@mergelist) {
+	next unless($_ =~ /^(\w+)\s+(\d+)/);
+	if (defined($topscores{$1})) {
+		if ($topscores{$1} <= $2) {
+			$topscores{$1} = $2;
+		}
+	}
+	else {
+		$topscores{$1} = $2;
+	}
+}
+
+# Generate a new local toplist with all results of $mycall and the best scores
+# from each other callsign. Remove dupes.
+
+my $tmp='';
+foreach (@mergelist) {
+	next unless ($_ =~ /^(\w+)\s+(\d+)/);
+	next if (index($tmp, $_) > -1);						# dupe 
+	if (($2 == $topscores{$1}) || ($1 eq $mycall))  {
+		$topscores{$1} = 0;
+		push @mytoplist, $_;
+		$tmp .= $_;
+	}
+}
+
+# Sort list by score
+
+@mytoplist = sort { 
+		(split(/\s+/, $b))[1] <=> (split(/\s+/, $a))[1] 
+} @mytoplist;
+
+
+# Write to $toplist and create backup.
+
+@mytoplist = map "$_\n", @mytoplist;		# unchomp
+
+open TL, ">$toplist";
+print TL @mytoplist;
+close TL;
+
+print "Wrote new toplist to '$toplist'.\n\n";
+
+if ($noupload) { print "Done.\n"; exit(0);}
+
+# Upload own record...
+
+open TL, $toplist;
+	@mytoplist = <TL>;
+close TL;
+
+my $line;
+foreach  (@mytoplist) {
+	if ($_ =~ /$mycall/) {
+		$line = $_;
+		last;
+	}
+}
+
+print "Now uploading your personal record...\n";
+
+$res = $ua->post($url[$x-1], ['mode' => 'update',
+			'line' => $line]);
+
+unless ($res->is_success) {
+	print "Failed to post score...\n";
+}
+
+print "Server response: ".$res->content."\n";
+
+print "Done.\n"; 

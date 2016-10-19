@@ -1,0 +1,2 @@
+?package(qrq):needs="text" section="Applications/Amateur Radio"\
+ title="qrq" command="/usr/bin/qrq"

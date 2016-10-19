@@ -1,0 +1,20 @@
+Source: qrq
+Section: hamradio
+Priority: extra
+Maintainer: Debian Hamradio Maintainers <debian-hams@lists.debian.org>
+Uploaders: Steve Conklin <steve@conklinhouse.com>, Kamal Mostafa <kamal@whence.com>, Colin Tuckley <colint@debian.org>
+Build-Depends: debhelper (>= 9), libncurses5-dev, libpulse-dev
+Standards-Version: 3.9.6
+Homepage: http://fkurz.net/ham/qrq.html
+
+Package: qrq
+Architecture: linux-any kfreebsd-any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: gnuplot
+Description: high speed morse trainer, similar to DL4MM's Rufz
+ qrq is an open source morse telegraphy trainer for Linux and Unix operating
+ systems, similar to the classic DOS version of Rufz by DL4MM.
+ .
+ It is not intended for learning telegraphy, but to improve the ability
+ to copy callsigns at high speeds, as needed for example for Contesting.
+

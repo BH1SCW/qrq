@@ -1,0 +1,97 @@
+0.3.1 / 2013-01-06   Fabian Kurz <fabian@fkurz.net>
+	* Fixed saving scores if toplist file is not in cwd (tnx ON4ACP)
+	* F7 repeats the _previous_ callsign/word (suggested by KU1T)
+	* The sample rate can be set via qrqrc now.
+	* Minor bugfixes in PulseAudio output
+
+0.3.0 / 2011-12-18   Fabian Kurz <mail@fkurz.net>
+	* New platform: Windows (with MINGW), thanks to SP8QED for patches
+	* CW Settings can be changed during attempts on the fly (F5)
+	* Attempts can be aborted without aborting the whole program
+	* A pretty new icon (thanks to Victoria, SV2KBS)
+
+0.2.1 / 2011-09-19   Fabian Kurz <mail@fkurz.net>
+	* Added support for native CoreAudio on OSX.  Also builds for iOS.
+	  [tnx KB1OOO]
+	* Removed support for OpenAL now that native OSX is supported and Pulse
+	  Audio is available. [tnx KB1OOO]
+	* Added English word list english.qcb  [tnx Chuck Vaughn, AA0HW]
+	* Fixed missing audio on second channel for OSS
+	* Fixed Debian Bug 771075 [tnx John Nogatch, AC6SL]
+
+0.2.0 / 2011-05-07   Fabian Kurz <mail@fkurz.net>
+	* Added options for fixed CW speed (regardless of errors), unlimited
+	usage of repeats and unlimited attempt lengths. Suggested by AA0HW.
+	* No more duplicate callsigns in one attempt
+	* Unlimited attempts (e.g. with _all_ callsigns of a particular
+	  database) added
+	* Call database file can be changed/selected in a menu now
+	* Added a database with the 100 most common English words
+	* Call databases with DOS linebreaks can now be used.
+	* Fixed bugs in memory allocation.
+	* CW edges changed to raised cosine
+	* Minimum character speed can be specified; below, Farnsworth is used
+	* PulseAudio support added (OSS and OpenAL still available)
+	* Reformatted ChangeLog
+
+0.1.4 / 2008-06-22   Fabian Kurz <mail@fkurz.net>
+	* Implemented dynamic allocation of the callsign database array.
+	* Callsign database updated, over 22000 callsigns now.
+	* Added support for building under OpenAL.
+	* Native build option for OSX; tnx KB1OOO!
+
+0.1.3 / 2007-12-15   Fabian Kurz <mail@fkurz.net>  
+	* Fixed handling of F- and Cursor-Keys on UTF-8 systems; 
+	Home-/End-Keys now also implemented.
+	* Some minor optical changes.
+
+0.1.2 / 2007-11-17   Fabian Kurz <mail@fkurz.net>
+	* Speeds are displayed in both WpM and CpM now
+	* Different CW waveforms (sine, sawtooth, squarewave) are now available 
+	* Backspace should now work in all terminals
+	* Added a Perl script ('qrqscore') to synchronize your toplist with
+	the internet toplist
+	* Added an ugly desktop icon
+
+0.1.1 / 2007-07-08   Fabian Kurz <mail@fkurz.net>
+	* qrq now ensures that it can write to 'qrqrc' and 'toplist' after
+	copying it from DESTDIR/share/qrq/ to ~/.qrq/
+	* Added all calls of the author's current log to the callsign database;
+	now 20084 unique callsigns.
+
+0.1.0 / 2007-06-30   Fabian Kurz <mail@fkurz.net>
+	* User can chose between random CW tone pitch (like before) and a fixed
+	frequency now, which can be set in qrqrc or in the config menu. Tnx
+	DL9PF fr patch!
+
+0.0.7 / 2007-06-17   Fabian Kurz <mail@fkurz.net>
+	* Added a timestamp to the toplist-file, which makes it possible to
+	track your training progress.
+	* Pressing F7 will generate a graph of score vs.  date with gnuplot
+	(if installed).
+
+0.0.6 / 2007-06-16   Fabian Kurz <mail@fkurz.net>
+	* Added Makefile. Program looks for its files in different directories
+	now and creates ~/.qrq/ unless toplist and qrqrc are in the current
+	directory.
+
+0.0.5 / 2006-07-29   Fabian Kurz <mail@fkurz.net>
+	* Settings (speed, mycall, risetimes..) can be changed from within the
+	program now (F5).
+
+0.0.4 / 2006-07-14   Fabian Kurz <mail@fkurz.net>
+	* Bugfix. Waiting for a non-existing thread caused segfaults. 
+	Thanks DL5RB!
+
+0.0.3 / 2006-06-25   Fabian Kurz <mail@fkurz.net>
+	* The CW output is now in a separate thread, making it possible to see
+	what the user typed during CW output.
+	* Added a sanity check of values read from the configuration file. It
+	shouldn't be possible to cause any problems by invalid entries anymore.
+	* Several minor bugfixes.
+
+0.0.2 / 2006-06-23   Fabian Kurz <mail@fkurz.net>
+	* Changed scoring system, other minor changes.
+
+0.0.1 / 2006-05-19   Fabian Kurz <mail@fkurz.net>
+	* Initial release

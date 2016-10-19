@@ -1,0 +1,15 @@
+qrq for Debian
+--------------
+
+Qrq should be run from a terminal under X or from a virtual console.
+The program can be exited with F10, but this key may be in use by your
+window manager when using X. In this case, use ctrl-c.
+
+You must make sure that /dev/dsp is not in use by either artsd (KDE), esd
+(GNOME) or any other sound application. Under gnome, you can simply type
+"esdctl off" from a terminal.
+
+A toplist is maintained by Fabian, see: http://fkurz.net/ham/qrq.html
+
+ -- Joop Stakenborg <pa3aba@debian.org>, Wed, 31 Oct 2007 09:00:00 +0200
+

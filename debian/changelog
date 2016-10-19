@@ -1,0 +1,143 @@
+qrq (0.3.1-2build1) xenial; urgency=medium
+
+  * No-change rebuild for ncurses6 transition.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sun, 07 Feb 2016 09:45:15 +0000
+
+qrq (0.3.1-2) unstable; urgency=medium
+
+  * Bump Standards-Version to 3.9.6
+  * Remove Hurd from list of supported archs (Closes: #782096)
+    Thanks to patch from mtang@openmailbox.org
+  * fix Conflicting declarations of function write_audio
+    patch from Michael Tautschnig <mt@debian.org> (Closes: #750241)
+
+ -- Colin Tuckley <colint@debian.org>  Sat, 09 May 2015 20:29:20 +0100
+
+qrq (0.3.1-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/
+    - debian/patches/link-with-lpthread.patch (Closes: 713589)
+    - replaced old style debian/rules
+    - bumped debian/compat to 9
+    - bumped Standards-Version to 3.9.4
+    - removed obsolete DM-Upload-Allowed
+
+ -- Kamal Mostafa <kamal@whence.com>  Sun, 23 Jun 2013 10:50:39 -0700
+
+qrq (0.3.0-2) unstable; urgency=low
+
+  * Fixed qrq.desktop main category
+
+ -- Kamal Mostafa <kamal@whence.com>  Tue, 10 Jan 2012 09:25:17 -0800
+
+qrq (0.3.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Install qrq.png and qrq.desktop
+
+ -- Kamal Mostafa <kamal@whence.com>  Mon, 09 Jan 2012 13:29:42 -0800
+
+qrq (0.2.1-2) unstable; urgency=low
+
+  * The following changes were present in the -1 release
+    but omitted from the changelog
+  * Dropped patch which was applied upstream:
+    - fix-build-for-gcc-4.6.patch
+  * Enabled DM-Upload-Allowed: yes
+  * Clean up rules and eliminate lintian warning
+    - debian-rules-missong-recommended-target
+
+ -- Steve Conklin <steve@conklinhouse.com>  Thu, 29 Sep 2011 08:57:18 -0500
+
+qrq (0.2.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Steve Conklin <steve@conklinhouse.com>  Thu, 29 Sep 2011 04:11:18 -0500
+
+qrq (0.2.0-2) unstable; urgency=low
+
+  [ John Nogatch ]
+  * Fix gcc 4.6 library order build problem (LP: #771075)
+
+ -- Kamal Mostafa <kamal@whence.com>  Sat, 23 Jul 2011 20:11:25 -0700
+
+qrq (0.2.0-1) unstable; urgency=low
+
+  [ Steve Conklin ]
+  * New upstream release
+  * change debian maintainer and uploaders (Closes: 554100)
+  * added libpulse-dev package dependency
+
+  [ Upstream Changes ]
+  * Added options for fixed CW speed (regardless of errors), unlimited
+    usage of repeats and unlimited attempt lengths. Suggested by AA0HW.
+  * No more duplicate callsigns in one attempt
+  * Unlimited attempts (e.g. with _all_ callsigns of a particular
+    database) added
+  * Call database file can be changed/selected in a menu now
+  * Added a database with the 100 most common English words
+  * Call databases with DOS linebreaks can now be used.
+  * Fixed bugs in memory allocation.
+  * CW edges changed to raised cosine
+  * Minimum character speed can be specified; below, Farnsworth is used
+  * PulseAudio support added (OSS and OpenAL still available)
+  * Reformatted ChangeLog
+
+
+ -- Steve Conklin <steve@conklinhouse.com>  Sat, 16 Jul 2011 15:53:17 -0500
+
+qrq (0.1.4-3) unstable; urgency=low
+
+  * Retiring - set the package maintainer to Debian QA Group.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 02 Nov 2009 22:40:06 +0000
+
+qrq (0.1.4-2) unstable; urgency=low
+
+  * Package made lintian clean by Cornell Gonschior <df6fr@gmx.de>,
+    thanks!
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Thu, 04 Sep 2008 19:52:37 +0200
+
+qrq (0.1.4-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Added symlink to qrq.1 for qrqscore man page. qrqscore manual is
+    included in qrq.1.
+
+ -- Cornell Gonschior <df6fr@gmx.de>  Wed, 03 Sep 2008 19:18:35 +0000
+
+qrq (0.1.4-1) unstable; urgency=low
+
+  [ Cornell Gonschior ]
+  * New upstream release
+  * Added suggestion of gnuplot for result viewing
+  * Corrected typo in menu file
+
+  [ Joop Stakenborg ]
+  * Upload on behalf of Cornell, DF6FR, who has indicated he wants to
+    become co-maintainer. Thanks Cornell!
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 28 Jul 2008 10:20:57 +0200
+
+qrq (0.1.3-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue, 22 Jan 2008 20:52:48 +0100
+
+qrq (0.1.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Mon, 19 Nov 2007 22:59:03 +0100
+
+qrq (0.1.1-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Wed, 31 Oct 2007 09:38:29 +0100
+

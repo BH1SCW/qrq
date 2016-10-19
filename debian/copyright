@@ -1,0 +1,21 @@
+This package was debianized by Joop Stakenborg <pa3aba@debian.org> on
+Wed, 31 Oct 2007 09:38:29 +0100.
+
+It was downloaded from http://fkurz.net/ham/qrq/
+Upstream Author: 
+
+    Fabian Kurz, mail@fkurz.net
+
+Copyright: 
+
+From qrq.c:
+
+qrq - High speed morse trainer, similar to DL4MM's Rufz    
+Copyright (C) 2006-20011  Fabian Kurz
+
+qrq is licensed under the GPL v2. A copy should be on your debian
+system under /usr/share/common-licenses/GPL-2.
+
+The Debian packaging is Copyright (C) 2007, Joop Stakenborg <pa3aba@debian.org>
+and is licensed under the GPL, see `/usr/share/common-licenses/GPL-2'.
+

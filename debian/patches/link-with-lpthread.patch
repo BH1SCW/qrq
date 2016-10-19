@@ -1,0 +1,15 @@
+Description: Link with required -lpthread in the USE_PA build
+Author: Kamal Mostafa <kamal@whence.com>
+Bug-Debian: http://bugs.debian.org/713589
+
+--- qrq-0.3.1.orig/Makefile
++++ qrq-0.3.1/Makefile
+@@ -47,7 +47,7 @@ ifeq ($(USE_CA), YES)
+ 		endif
+ else ifeq ($(USE_PA), YES)
+ 		CFLAGS:=$(CFLAGS) -D PA -pthread
+-		LDFLAGS:=$(LDFLAGS) -lpulse-simple -lpulse -lncurses
++		LDFLAGS:=$(LDFLAGS) -lpthread -lpulse-simple -lpulse -lncurses
+ 		OBJECTS=qrq.o pulseaudio.o
+ else ifeq ($(USE_WIN32), YES)
+ 		CFLAGS:=$(CFLAGS) -D PA

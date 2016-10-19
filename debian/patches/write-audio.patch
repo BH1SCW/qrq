@@ -1,0 +1,15 @@
+Description: Fix write_audio definition.
+Author: Michael Tautschnig <mt@debian.org>
+Bug-Debian: http://bugs.debian.org/750241
+
+--- a/pulseaudio.h
++++ b/pulseaudio.h
+@@ -22,7 +22,7 @@
+ #define QRQ_PA
+ 
+ void *open_dsp (); 
+-void write_audio (void *bla, int *in, size_t size);
++void write_audio (void *bla, int *in, int size);
+ void close_audio (void *s);
+ 
+ #endif

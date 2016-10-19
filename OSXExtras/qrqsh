@@ -1,0 +1,6 @@
+#!/bin/bash
+
+localdir=`echo $0 | sed 's/\(.*\)\/.*/\1/'`
+
+/usr/bin/open ${localdir}/qrq
+

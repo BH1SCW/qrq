@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=qrq
+GenericName=qrq
+Comment=High speed Morse telegraphy trainer
+Exec=qrq
+Icon=qrq
+Terminal=true
+Type=Application
+Categories=Audio;HamRadio;
+Keywords=Morse;

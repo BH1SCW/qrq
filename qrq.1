@@ -1,0 +1,54 @@
+.TH QRQ 1 "January 2013" Linux "User Manuals"
+.SH NAME
+qrq \- High speed Morse telegraphy trainer
+
+.SH SYNOPSIS
+.B qrq 
+
+.B qrqscore
+[OPTION]
+.SH DESCRIPTION
+.B qrq
+is an open source Morse code 
+trainer for various platforms and operating
+systems, similar to the classic DOS
+version of Rufz by DL4MM.
+
+It's not intended for learning telegraphy (have a look at
+http://radio.linux.org.au/ for CW learning software), but to improve the
+ability to copy callsigns at high speeds, as needed for example for contesting. 
+
+After starting the software and setting up the parameters (speed, CW
+waveform...), the program sends 50 amateur radio callsigns. When entering a
+copied callsign correctly, the speed increases, otherwise it decreases. Points
+are awarded for correctly copied callsigns, depending on the speed.
+
+A scoreboard/toplist exists on the author's website, at
+http://fkurz.net/ham/qrqtop.php. The local toplist file can be synchronized
+with the online toplist with 
+.B qrqscore -d
+and you can upload your own top scores by invoking
+.B qrqscore -u.
+
+.SH FILES
+.I qrqrc
+.RS
+Default configuration file
+.RE
+.I callbase.qcb
+.RS
+Database of amateur radio callsigns used by qrq. Other files may be loaded.
+.RE
+.I toplist
+.RS
+Default toplist file
+.RE
+
+.B qrq
+is looking for these files in the current directory, in ~/.qrq/ or in
+DESTDIR/share/qrq/ (in that order). In the latter case, ~/.qrq/ is created, for
+an user-specific toplist and configuration.
+.SH AUTHOR
+Fabian Kurz, DJ1YFK <fabian@fkurz.net> - http://fkurz.net/ham/qrq.html
+.SH "SEE ALSO"
+.BR morse (1)
